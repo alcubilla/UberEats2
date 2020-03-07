@@ -2,21 +2,23 @@ module.exports = (APP,Data,ShopingCart, Total) =>{
     
     //Zonas
     APP.get('/zonas', (req,res) => {
-    res.json( Data.map (e=> e.zona)); 
+    let show = Data.map (e=> e.zona);
+    res.json( show ); 
     });
 
     //restaurantes por zona
     APP.post('/restaurants',(req, res)=> {
     let zona =req.body.zona;
-    res.json (Data.filter((o, i, a)=> a[i].zona == zona )[0].restaurants )
+    let show = (Data.filter((o, i, a)=> a[i].zona == zona )[0].restaurants );
+    res.json (show);
     });
 
     //menu del restaurante
     APP.post('/menu',(req,res) => {
-    
     let zona =req.body.zona; //zona
     let id = req.body.id; //id del restaurante
-    res.json((Data.filter((o, i, a)=> a[i].zona == zona )[0].restaurants).filter (e => e.id == id)[0].menu);
+    let show = ((Data.filter((o, i, a)=> a[i].zona == zona )[0].restaurants).filter (e => e.id == id)[0].menu);
+    res.json(show);
 
     })
      //Carrito de compras - seleccionar un producto
